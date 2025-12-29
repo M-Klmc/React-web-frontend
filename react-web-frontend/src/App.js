@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoList from './TodoList.js'
 
 function App() {
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTS1LbG1jMiIsImlhdCI6MTc2NzAzMTI2OX0.QaeAUhOOxGFX5C3pOGIiCDaaRdUafBUSGWLNf7Cm_-k';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <> 
+      <nav>
+        <a href='/' className='brand'>
+          <span>Список дел</span>
         </a>
-      </header>
-    </div>
+        <input id='bmenub' type='checkbox' className='show' />
+        <label htmlFor='bmenub' className='burger pseudo button'>&#9776</label>
+        <div className='menu'></div>
+      </nav>
+      <TodoList token={token}/>
+      <p className='copyright'>Все права принадлежат M-Klmc</p>
+    </>
   );
 }
-
 export default App;
