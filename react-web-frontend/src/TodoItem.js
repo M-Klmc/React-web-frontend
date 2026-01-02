@@ -1,3 +1,6 @@
+import TodoSetDone from './TodoSetDone.js';
+import TodoDelete from './TodoDelete.js';
+
 export default function TodoItem({ item }) {
     return (
         <article className="card">
@@ -12,6 +15,10 @@ export default function TodoItem({ item }) {
             <footer>
                 {item.desc && <p>{item.desc}</p>}
                 <p className="datetime">{new Date(item.createdAt).toLocaleString()}</p>
+                <div className='horizontal'>
+                    {!item.done && <TodoSetDone itemID={item._id} />}
+                    <TodoDelete itemID={item._id} />
+                </div>
             </footer>
         </article>
     );
