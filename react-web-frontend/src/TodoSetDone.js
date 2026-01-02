@@ -11,7 +11,7 @@ export default function TodoSetDone({ itemID }) {
         const response = await fetch(`${baseURL}${itemID}/`, {
             method: 'PUT',
             headers: {
-                Authorization: `Bearer${token}`
+                Authorization: `Bearer ${token.trim()}`
             }
         });
         if (response.ok)
