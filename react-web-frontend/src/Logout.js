@@ -5,7 +5,7 @@ export default function Logout({ acceptToken }) {
     }
 
     return (
-        <form>
+        <form className="horizontal" onSubmit={handleFormSubmit}>
             <input type="submit" className="warning" value="Выйти"/>    
         </form>
     );

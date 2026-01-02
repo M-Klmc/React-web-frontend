@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
 import TodoList from './TodoList.js';
-import Login from '/Login.js';
-import Logout from '/Logout.js'
+import Login from './Login.js';
+import Logout from './Logout.js';
+
+import { TokenContext } from './utility.js';
 
 function App() {
   const [token, setToken] = useState(undefined);
@@ -12,7 +14,7 @@ function App() {
   }
 
   return (
-    <> 
+    <TokenContext.Provider> 
       <nav>
         {token &&
         <a href='/' className='brand'>
@@ -26,9 +28,13 @@ function App() {
         </div>
       </nav>
         {!token && <Login acceptToken={acceptToken}/>}
-        {token && <TodoList token={token}/>}
+        {token && 
+        <TokenContext.Provider token={token}>
+        <TodoList/>
+        </TokenContext.Provider>
+        }
       <p className='copyright'>Все права принадлежат M-Klmc</p>
-    </>
+    </TokenContext.Provider>
   );
 }
 export default App;

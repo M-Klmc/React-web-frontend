@@ -12,7 +12,7 @@ export default function Login({acceptToken}) {
         const body = new URLSearchParams();
         body.append('username', un);
         body.append('password', p);
-        const response = await fetch(`${baseURL}login/`, {
+        const response = await fetch(`${baseURL}/login/`, {
             method: 'POST',
             body: body
         });
