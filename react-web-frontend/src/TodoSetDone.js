@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
-import { baseURL, TokenContext, RefreshListContext } from "./utility";
+import { baseURL } from "./utility";
+import { TokenContext, RefreshListContext } from "./contexts.js";
 
 export default function TodoSetDone({ itemID }) {
     const token = useContext(TokenContext);
