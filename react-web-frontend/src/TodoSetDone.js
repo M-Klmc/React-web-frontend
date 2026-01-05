@@ -9,7 +9,7 @@ export default function TodoSetDone({ itemID }) {
 
     async function handleFormSubmit(evt) {
         evt.preventDefault();
-        const response = await fetch(`${baseURL}${itemID}/`, {
+        const response = await fetch(`${baseURL}/${itemID}/`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${token.trim()}`

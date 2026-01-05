@@ -9,7 +9,7 @@ export default function TodoDelete({ itemID }) {
 
     async function handleFormSubmit(evt) {
         evt.preventDefault();
-        const response = await fetch(`${baseURL}${itemID}/`, {
+        const response = await fetch(`${baseURL}/${itemID}/`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token.trim()}`
