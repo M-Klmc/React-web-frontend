@@ -1,38 +1,52 @@
 import { useState } from 'react';
-
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import TodoList from './TodoList.js';
 import Login from './Login.js';
 import Logout from './Logout.js';
-
 import { TokenContext, RefreshListContext } from './contexts.js';
 
 function App() {
-  const [token, setToken] = useState(undefined);
+  const [token, setToken] = useState(null);
+  
+  const refreshList = () => {
 
-  function acceptToken(tnk) {
-    setToken(tnk);
+  };
+
+  function acceptToken(newToken) {
+    setToken(newToken);
   }
 
-    return (
+  return (
+    <BrowserRouter>
       <TokenContext.Provider value={token}>
-        <RefreshListContext.Provider value={() => {}}>
+        <RefreshListContext.Provider value={refreshList}>
           <nav>
-            {token &&
-            <a href='/' className='brand'>
-              <span>Список дел</span>
-            </a>
-            }
+            {token && (
+              <Link to="/" className='brand'>
+                <span>Список дел</span>
+              </Link>
+            )}
             <input id='bmenub' type='checkbox' className='show' />
-            <label htmlFor='bmenub' className='burger pseudo button'>&#9776</label>
+            <label htmlFor='bmenub' className='burger pseudo button'>&#9776;</label>
             <div className='menu'>
-                  {token && <Logout acceptToken={acceptToken}/>}
+              {token && <Logout acceptToken={acceptToken} />}
             </div>
           </nav>
-            {!token && <Login acceptToken={acceptToken}/>}
-            {token && <TodoList/>}
-          <p className='copyright'>Все права принадлежат M-Klmc</p>
+
+          <Routes>
+            <Route path="/" element={
+              token ? <TodoList /> : <Navigate to="/login" replace />
+            }/>
+            <Route path="/login" element={
+              !token ? <Login acceptToken={acceptToken} /> : <Navigate to="/" replace />
+            }/>
+          </Routes>
+
+          <p className="copyright">Все права принадлежат M-Klmc</p>
         </RefreshListContext.Provider>
       </TokenContext.Provider>
+    </BrowserRouter>
   );
 }
+
 export default App;
