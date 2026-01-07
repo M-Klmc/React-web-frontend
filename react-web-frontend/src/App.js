@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import TodoList from './TodoList.js';
 import Login from './Login.js';
 import Logout from './Logout.js';
+import TodoDetail from './TodoDetail.js';
 import { TokenContext, RefreshListContext } from './contexts.js';
 
 function App() {
@@ -34,6 +35,9 @@ function App() {
           </nav>
 
           <Routes>
+            <Route path="/todo/:id" element={
+              token ? <TodoDetail /> : <Navigate to="/login" replace />
+            }/>
             <Route path="/" element={
               token ? <TodoList /> : <Navigate to="/login" replace />
             }/>
