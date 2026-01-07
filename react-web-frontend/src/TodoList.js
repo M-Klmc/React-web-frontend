@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
 import { baseURL } from "./utility.js";
 import { TokenContext, RefreshListContext } from "./contexts.js";
 
@@ -26,6 +27,7 @@ export default function TodoList() {
     }
 
     useEffect(() => {
+        if(!token) return;
         (async() => {
             const params = new URLSearchParams();
             if (search)
@@ -43,15 +45,20 @@ export default function TodoList() {
         })();
     }, [token, search, sort, refresh]);
     return (
-        <>
-            <TodoSearch search={search} acceptSearch={acceptSearch} />
-            <TodoSort sort={sort} acceptSort={acceptSort}/>
-            <h1 className="heading">Запланированные дела</h1>
-            <RefreshListContext.Provider value={RefreshList}>
-            {todos.map((item) => (
-                <TodoItem key={item._id} item={item}/>
-            ))}
-            </RefreshListContext.Provider>
+        <>  {!token && < Navigate to="/login" />}
+            {token &&
+            <>
+                <TodoSearch search={search} acceptSearch={acceptSearch} />
+                <TodoSort sort={sort} acceptSort={acceptSort}/>
+                <h1 className="heading">Запланированные дела</h1>
+                <RefreshListContext.Provider value={RefreshList}>
+                {todos.map((item) => (
+                    <TodoItem key={item._id} item={item}/>
+                ))}
+                </RefreshListContext.Provider>
+            </>
+            }        
+
         </>
     );
 }
