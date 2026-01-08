@@ -59,10 +59,10 @@ export default function TodoAdd() {
                                     </span></div>
                             }
                             <label>Описание</label>
-                            <textarea onChange={(evt => {
-                                            setD(evt.target.value)}
-                                    )}>
-                                    {d}</textarea>
+                                <textarea 
+                                    value={d}
+                                    onChange={(evt) => setD(evt.target.value)}
+                                />
                         <label>Иллюстрация</label>
                         <input type="file" accept="image/*" onChange={handleFileChange}/>
                         {errors.addendum && 
