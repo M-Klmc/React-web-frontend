@@ -12,7 +12,7 @@ export default function TodoDetail() {
     useEffect(() => {
         if (!token) return;
         (async () => {
-            const response = await fetch(`${baseURL}${id}/`, {
+            const response = await fetch(`${baseURL}/${id}/`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

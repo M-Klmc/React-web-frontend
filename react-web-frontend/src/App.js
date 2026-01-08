@@ -35,7 +35,7 @@ function App() {
           </nav>
 
           <Routes>
-            <Route path="/todo/:id" element={
+            <Route path="/:id" element={
               token ? <TodoDetail /> : <Navigate to="/login" replace />
             }/>
             <Route path="/" element={

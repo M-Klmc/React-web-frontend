@@ -7,10 +7,10 @@ export default function TodoItem({ item }) {
         <article className="card">
             <header>
                 {item.done &&
-                    <h2><del><Link to={`/${item.id}`}>{item.title}</Link></del></h2>
+                    <h2><del><Link to={`/${item._id}`}>{item.title}</Link></del></h2>
                 }
                 {!item.done &&
-                    <h2><del><Link to={`/${item.id}`}>{item.title}</Link></del></h2>
+                    <h2><del><Link to={`/${item._id}`}>{item.title}</Link></del></h2>
                 }
             </header>
             <footer>
