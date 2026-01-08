@@ -33,6 +33,7 @@ function App() {
             <input id='bmenub' type='checkbox' className='show' />
             <label htmlFor='bmenub' className='burger pseudo button'>&#9776;</label>
             <div className='menu'>
+              {token && <Link to="/mostactive/" className="button">Самые активные пользователи</Link>}
               {token && <Link to="/add/" className='button'>Добавить дело</Link>}
               {token && <Logout acceptToken={acceptToken} />}
               {!token && <Link to="/register/" className='button'>Зарегистрироваться</Link>}
@@ -41,6 +42,9 @@ function App() {
           </nav>
 
           <Routes>
+            <Route path="/mostactive" element={
+              token ? <TodoAdd /> : <Navigate to="/login" replace />
+            }/>
             <Route path="/add" element={
               token ? <TodoAdd /> : <Navigate to="/login" replace />
             }/>
