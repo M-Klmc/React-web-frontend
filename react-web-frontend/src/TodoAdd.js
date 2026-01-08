@@ -48,7 +48,7 @@ export default function TodoAdd() {
             {token &&
                 <>
                     <h1>Добавление дела</h1>
-                    <form>
+                    <form onSubmit={handleFormSubmit}>
                         <label>Заголовок</label>
                         <input value={t} onChange={(evt) => {
                             setT(evt.target.value)}
