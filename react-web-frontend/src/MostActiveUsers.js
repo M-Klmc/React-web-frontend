@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { baseURL } from './utility.js';
-import { TokenContext } from './utility.js';
+import { TokenContext } from './contexts.js';
 
 export default function MostActiveUsers() {
     const [mau, setMAU] = useState(undefined);
@@ -11,7 +11,7 @@ export default function MostActiveUsers() {
     useEffect(() => {
         if (!token) return;
         (async () => {
-            const response = await fetch(`${baseURL}mostactive/`, {
+            const response = await fetch(`${baseURL}/mostactive/`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

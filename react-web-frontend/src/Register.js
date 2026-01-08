@@ -18,12 +18,12 @@ export default function Register() {
         body.append('username', un);
         body.append('password', p1);
         body.append("password2", p2);
-        const response = await fetch(`${baseURL}register/`, {
+        const response = await fetch(`${baseURL}/register/`, {
             method: 'POST',
             body: body
         });
         if (response.ok)
-            redirect('/');
+            redirect('/login');
         else if (response.status === 406)
             setErrors((await response.json()).errors);
         else
@@ -32,9 +32,7 @@ export default function Register() {
 
     return (
         <>
-            {!token && <Navigate to="/"/>}
-            {!token &&
-                <>
+            {token && <Navigate to="/" replace/>}
                     <h1>Регистрация</h1>
                     <form onSubmit={handleFormSubmit}>
                         <label>Имя Пользователя</label>
@@ -68,8 +66,6 @@ export default function Register() {
                                 <input type="submit" value="Зарегестрировать"/>
                             </div>
                     </form>
-                </>
-            }
         </>
     );
 }

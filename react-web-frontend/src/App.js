@@ -7,6 +7,7 @@ import Logout from './Logout.js';
 import TodoList from './TodoList.js';
 import TodoDetail from './TodoDetail.js';
 import TodoAdd from './TodoAdd.js';
+import MostActiveUsers from './MostActiveUsers.js';
 import { TokenContext, RefreshListContext } from './contexts.js';
 
 function App() {
@@ -43,13 +44,13 @@ function App() {
 
           <Routes>
             <Route path="/mostactive" element={
-              token ? <TodoAdd /> : <Navigate to="/login" replace />
+              token ? <MostActiveUsers /> : <Navigate to="/login" replace />
             }/>
             <Route path="/add" element={
               token ? <TodoAdd /> : <Navigate to="/login" replace />
             }/>
             <Route path="/register" element={
-              token ? <Register /> : <Navigate to="/login" replace />
+              !token ? <Register /> : <Navigate to="/" replace />
             }/>
             <Route path="/:id" element={
               token ? <TodoDetail /> : <Navigate to="/login" replace />

@@ -10,7 +10,7 @@ export default function TodoItem({ item }) {
                     <h2><del><Link to={`/${item._id}`}>{item.title}</Link></del></h2>
                 }
                 {!item.done &&
-                    <h2><del><Link to={`/${item._id}`}>{item.title}</Link></del></h2>
+                    <h2><Link to={`/${item._id}`}>{item.title}</Link></h2>
                 }
             </header>
             <footer>
