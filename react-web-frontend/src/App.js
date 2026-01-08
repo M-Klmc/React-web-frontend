@@ -11,15 +11,20 @@ import MostActiveUsers from './MostActiveUsers.js';
 import { TokenContext, RefreshListContext } from './contexts.js';
 
 function App() {
-  const [token, setToken] = useState(null);
-  
-  const refreshList = () => {
-
-  };
-
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem('authToken') || null;
+  });
   function acceptToken(newToken) {
     setToken(newToken);
+    if (newToken) {
+      localStorage.setItem('authToken', newToken);
+    } else {
+      localStorage.removeItem('authToken');
+    }
   }
+  const refreshList = () => {
+    };
+
 
   return (
     <BrowserRouter>
